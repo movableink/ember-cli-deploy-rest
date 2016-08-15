@@ -71,13 +71,11 @@ module.exports = {
         var restClient = this.readConfig('restClient');
         var keyPrefix  = this.readConfig('keyPrefix');
 
-        var revisionKey = restClient.activeRevision(keyPrefix);
-
-        return {
-          revisionData: {
-            previousRevisionKey: revisionKey
-          }
-        };
+        return restClient.activeRevision(keyPrefix).then((previousRevision) => {
+          return {
+            revisionData: { previousRevision }
+          };
+        });
       },
 
       activate: function(/* context */) {
