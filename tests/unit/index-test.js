@@ -2,7 +2,7 @@
 /* jshint jasmine: true */
 'use strict';
 
-var Promise = require('ember-cli/lib/ext/promise');
+var RSVP = require('rsvp');
 var assert  = require('../helpers/assert');
 
 var stubProject = {
@@ -66,7 +66,7 @@ describe('ember-cli-deploy-rest', function() {
             restClient: function(context) {
               return {
                 upload: function(keyPrefix, revisionKey) {
-                  return Promise.resolve(keyPrefix + ':' + revisionKey);
+                  return RSVP.resolve(keyPrefix + ':' + revisionKey);
                 }
               };
             }
