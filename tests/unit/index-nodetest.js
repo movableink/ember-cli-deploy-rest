@@ -1,8 +1,7 @@
-/* jshint node: true */
-/* jshint jasmine: true */
 'use strict';
 
-var Promise = require('ember-cli/lib/ext/promise');
+import require from 'require';
+var Promise = require('rsvp').Promise;
 var assert  = require('../helpers/assert');
 
 var stubProject = {
@@ -63,7 +62,7 @@ describe('ember-cli-deploy-rest', function() {
             username: 'user',
             password: 'secret',
             revisionKey: '123abc',
-            restClient: function(context) {
+            restClient: function(/* context */) {
               return {
                 upload: function(keyPrefix, revisionKey) {
                   return Promise.resolve(keyPrefix + ':' + revisionKey);
